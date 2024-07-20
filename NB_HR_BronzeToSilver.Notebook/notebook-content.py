@@ -57,3 +57,16 @@ df_active.count()
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+#fitlrando os funcionários ativos.
+df_inactive = df.filter(df['status']=='I')
+display(df_inactive)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
