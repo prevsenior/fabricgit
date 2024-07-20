@@ -22,10 +22,44 @@
 
 # CELL ********************
 
-#Lendo todos os arquivos de uma pasta e armazendo em um dataframe.
-df = spark.read.format("csv").option("header","true").load("Files/bronze/hr/*.csv")
-
+#Lendo todos os arquivos de uma pasta e armazendo em um dataframe e inferindo o schema.
+df = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("Files/bronze/hr/*.csv")
 display(df)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#fitlrando os funcionários ativos.
+df_active = df.filter(df['status']=='A')
+display(df_active)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#contando os funcionários ativos.
+df_active.count()
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 
 # METADATA ********************
 
