@@ -22,9 +22,9 @@
 
 # CELL ********************
 
-#Lendo todos os arquivos de uma pasta e armazendo em um dataframe e inferindo o schema.
-df = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("Files/bronze/hr/*.csv")
-display(df)
+#Library session
+from pyspark.sql.functions import col, year, month, dayofmonth
+from pyspark.sql.functions import current_date
 
 # METADATA ********************
 
@@ -34,10 +34,23 @@ display(df)
 # META }
 
 # CELL ********************
+
+#Lendo todos os arquivos de uma pasta e armazendo em um dataframe e inferindo o schema.
+df = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load("Files/bronze/hr/*.csv")
 
 #fitlrando os funcionários ativos.
 df_active = df.filter(df['status']=='A')
-display(df_active)
+
+# Calculando a idade
+df_active = df.withColumn("age",(year(current_date()) - year(col("birthdate")) .cast("int")))
+
+from pyspark.sql.functions import col, when
+# Classificando a idade em categorias
+df_active= df_active.withColumn("age_category",
+                   when(col("age").between(0, 25), "menor que 25 anos")
+                   .when(col("age").between(26, 35), "entre 26 e 35 anos")
+                   .when(col("age").between(36, 45), "entre 36 e 45 anos")
+                   .otherwise("Maior que 45"))
 
 # METADATA ********************
 
@@ -48,21 +61,8 @@ display(df_active)
 
 # CELL ********************
 
-#contando os funcionários ativos.
-df_active.count()
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-#fitlrando os funcionários ativos.
-df_inactive = df.filter(df['status']=='I')
-display(df_inactive)
+#Gravando como parquet na silver
+df_active.write.format('parquet').mode('overwrite').save('Files/silver/hr')
 
 # METADATA ********************
 
