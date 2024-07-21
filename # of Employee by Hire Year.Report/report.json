@@ -1,0 +1,42 @@
+{
+  "config": "{\"version\":\"5.55\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU06\",\"version\":\"5.56\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU06",
+            "path": "BaseThemes/CY24SU06.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "Page 1",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "d9ed6cd0e3781cb0d715",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"7883d88e0757da56bec5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":15.888285492629945,\"y\":72.49030256012412,\"z\":0,\"width\":1165.8029480217222,\"height\":280.0310318076028,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"lineChart\",\"projections\":{\"Category\":[{\"queryRef\":\"dim_hiredate.hireyear\",\"active\":true}],\"Y\":[{\"queryRef\":\"Count(dim_employee.name)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"dim_hiredate\",\"Type\":0},{\"Name\":\"d1\",\"Entity\":\"dim_employee\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"hireyear\"},\"Name\":\"dim_hiredate.hireyear\",\"NativeReferenceName\":\"hireyear\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"name\"}},\"Function\":2},\"Name\":\"Count(dim_employee.name)\",\"NativeReferenceName\":\"Count of name\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d1\"}},\"Property\":\"name\"}},\"Function\":2}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 280.03,
+          "width": 1165.80,
+          "x": 15.89,
+          "y": 72.49,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
